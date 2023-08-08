@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from fluxo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('categoria/', views.select_categoria),
+    path('categoria/insert/', views.insert_categoria),
+    path('ator/insert/', views.insert_ator),
+    path('lancamento/insert/', views.insert_lancamento),
 ]

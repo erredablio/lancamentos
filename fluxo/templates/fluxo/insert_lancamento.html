@@ -1,0 +1,80 @@
+{% extends 'body.html' %}
+{% block body %}
+<div class="container-fluid">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row" style="gap: 10px; padding: 10px; display: flex; justify-content: space-between;">
+            <div class="input-field outlined col s12 m12 l4">
+                <select id="form-select-1" name="lancamentotipo" >
+                    <option value="S" selected>Saída</option>
+                    <option value="E">Entrada</option>
+                </select>
+                <label for="form-select-1">Tipo:</label>
+            </div>
+            <div class="input-field outlined col s12 m12 l2">
+                <input id="dtvencimento" name="dtvencimento" type="text" class="datepicker" placeholder=" ">
+                <label class="active" for="dtvencimento">Data de Vencimento:</label>
+            </div>                    
+        </div>
+        <div class="row" style="gap: 10px; padding: 10px;">
+            <div class="input-field outlined col s12 m12 l2">
+                <select id="form-select-1" name="lancamentocredor">
+                    <option value="" disabled selected>Selecione</option>
+                    {% for s_credor in credores %}
+                    <option value="{{ s_credor.id }}">{{ s_credor.nome }}</option>
+                    {% endfor %}
+                </select>
+                <label for="form-select-1">Credor:</label>
+            </div>
+            <div class="input-field outlined col s12 m12 l2">
+                <select id="form-select-1" name="lancamentoresponsavelconta">
+                    <option value="" disabled selected>Selecione</option>
+                    {% for s_responsavel_pagamento in responsaveis_pagamentos %}
+                    <option value="{{ s_responsavel_pagamento.id }}">{{ s_responsavel_pagamento.nome }}</option>
+                    {% endfor %}
+                </select>
+                <label for="form-select-1">Resp. conta:</label>
+            </div>
+            <div class="input-field outlined col s12 m12 l2">
+                <select id="form-select-1" name="lancamentoresponsavelpagamento">
+                    <option value="" disabled selected>Selecione</option>
+                    {% for s_responsavel_conta in responsaveis_contas %}
+                    <option value="{{ s_responsavel_conta.id }}">{{ s_responsavel_conta.nome }}</option>
+                    {% endfor %}
+                </select>
+                <label for="form-select-1">Resp. pagamento:</label>
+            </div>
+            <div class="input-field outlined col s12 m12 l2">
+                <input placeholder="R$ 0,00" id="vlrdevido" name="vlrdevido" type="text" class="validate">
+                <label for="vlrdevido">Valor Devido</label>
+            </div>
+            <div class="input-field outlined col s6 m6 l2">
+                <input placeholder="1" id="parcelainicial" name="parcelainicial" type="text" class="validate">
+                <label for="parcelainicial">Parcela de:</label>  
+            </div>
+            <div class="input-field outlined col s6 m6 l2";>
+                <input placeholder="1" id="parcelafinal" type="text" name="parcelafinal" class="validate">
+                <label for="parcelafinal">Parcela até:</label>  
+            </div>
+        </div>
+        <div class="row" style="gap: 10px; padding: 10px;">
+            <div class="input-field outlined col s12 m12 l12">
+            <textarea id="observacao" name="observacao" class="materialize-textarea" placeholder=" "></textarea>
+            <label for="observacao">Observação:</label>
+            </div>
+        </div>
+        <div class="row" style="gap: 10px; padding: 10px; display: flex; justify-content: flex-end">
+            <div class="input-field col s12 m12 l12">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+                    <i class="material-icons left">save</i>
+                </button>
+            </div>
+            <div class="input-field col s12 m12 l12">
+                <button class="btn waves-effect waves-light blue" type="submit" name="action">Pagar
+                    <i class="material-icons left">paid</i>
+                </button>
+            </div>
+        </div>
+    </form>
+<div>
+{% endblock body %}

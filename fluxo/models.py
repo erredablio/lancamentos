@@ -15,9 +15,9 @@ class Ator(models.Model):
     nome = models.CharField(max_length=150)
     status = models.BooleanField(default=1)
     categoria = models.ForeignKey(Categoria, related_name='fk_categoria', on_delete=models.CASCADE)   
-    credor = models.BooleanField()
-    responsavel_pagamento = models.BooleanField()
-    responsavel_conta = models.BooleanField()
+    credor = models.BooleanField(default=False)
+    responsavel_pagamento = models.BooleanField(default=False)
+    responsavel_conta = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'Ator'
@@ -38,7 +38,7 @@ class Lancamento(models.Model):
     descricao = models.TextField(max_length=150, null=True, blank=True)
     parcelas = models.IntegerField(default=0, null=False, blank=False)    
     valor_devido = models.DecimalField(default=0, max_digits=10, decimal_places=2, null=False, blank=False)
-    valor_pago = models.DecimalField(default=0, max_digits=10, decimal_places=2, null=False, blank=False)    
+    valor_pago = models.DecimalField(default=0, max_digits=10, decimal_places=2, null=True, blank=True)    
     tipo = models.CharField(default='S', max_length = 1, choices=TIPO, null=False, blank=False)
     status = models.CharField(default='A', max_length = 1, choices=STATUS, null=False, blank=False)
     

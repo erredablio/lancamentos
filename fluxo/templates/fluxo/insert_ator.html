@@ -1,0 +1,52 @@
+{% extends 'body.html' %}
+{% block body %}
+<div class="container-fluid">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row" style="gap: 10px; padding: 10px;">
+            <div class="input-field outlined col s12 m12 l12">
+                <select id="form-select-1" name="selectcategoria">
+                    <option value="" disabled selected>Selecione</option>
+                    {% for s_categoria in categorias %}
+                    <option value="{{ s_categoria.id }}">{{ s_categoria.nome }}</option>
+                    {% endfor %}
+                </select>
+                <label for="form-select-1">Categoria:</label>
+            </div>
+        </div>
+        <div class="row" style="gap: 10px; padding: 10px;">
+            <div class="input-field outlined col s12 m12 l12">
+                <input placeholder="" id="nomecredor" name="nomecredor" type="text" class="validate">
+                <label for="nomecredor">Nome:</label>  
+            </div>
+        </div>
+        <div class="row" style="gap: 0x; padding: 10px; display: flex; justify-content: space-evenly;">
+            <div class="col s4">
+                <label>
+                    <input type="checkbox" name="checkboxcredor" id="checkboxcredor"/>
+                    <span>Credor</span>
+                </label>
+            </div>
+            <div class="col s4">
+                <label>
+                    <input type="checkbox" name="checkboxresponsavelconta" id="checkboxresponsavelconta"/>
+                    <span>Resp. conta</span>
+                </label>
+            </div>
+            <div class="col s4">
+                <label>
+                    <input type="checkbox" name="responsavelpagamento" id="responsavelpagamento"/>
+                    <span>Resp. Pagamento</span>
+                </label>
+            </div>
+        </div>
+        <div class="row" style="gap: 10px; padding: 10px; display: flex; justify-content: flex-end">
+            <div class="input-field col s12 m12 l12">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+                    <i class="material-icons left">save</i>
+                </button>
+            </div>
+        </div>
+    </form>
+<div>
+{% endblock body %}
