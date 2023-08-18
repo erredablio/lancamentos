@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from datetime import datetime
 from fluxo.models import Categoria, Ator, Lancamento
 # Create your views here.
@@ -13,16 +13,30 @@ def insert_categoria(request):
         post=Categoria()
         post.nome=request.POST['nomecategoria']
         post.save()
-        return render(request, './fluxo/insert_categoria.html')
+        return redirect('select_categoria')
     else:
-        return render(request, './fluxo/insert_categoria.html')
+        return redirect('select_categoria')    
+
+def update_categoria(request, id):
+    s_categoria = Categoria.objects.get(pk=id)
+    context = {'categorias':s_categoria}
+    if request.method=='POST':        
+        s_categoria.nome=request.POST['nomecategoria']
+        s_categoria.save()
+        return redirect('select_categoria')    
+    return render(request, './fluxo/update_categoria.html', context)
+
+def delete_categoria(request, id):
+    s_categoria = Categoria.objects.get(pk=id)
+    s_categoria.delete()
+    return redirect('select_categoria')
 
 def insert_ator(request):
     s_categoria = Categoria.objects.all()
     context = {'categorias':s_categoria}
     if request.method=='POST':
         post=Ator()
-        post.categoria=Categoria.objects.get(id=int(request.POST['selectcategoria']))
+        post.categoria=get_object_or_404(Categoria, id=int(request.POST['selectcategoria']))
         post.nome=request.POST['nomecredor']
         post.status=1        
         if 'checkboxcredor' in request.POST:

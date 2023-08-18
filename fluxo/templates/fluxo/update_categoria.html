@@ -1,14 +1,15 @@
 {% extends 'body.html' %}
 {% block body %}
-<form action="{% url 'insert_categoria' %}" method="POST">
+{% for s_categoria in categorias %}
+<form action="{% url 'update_categoria' s_categoria.id %}" method="POST">
 {% csrf_token %}
-    <div id="insert" class="modal">
+    <div id="update-{{s_categoria.id}}" class="modal">
         <div class="modal-content">
-            <h4>Insira uma Categoria</h4>
+            <h4>Edite a Categoria #{{ s_categoria.id }}</h4>
             <div class="container-fluid">
                 <div class="row" style="gap: 10px; padding: 10px;">
                     <div class="input-field outlined col s12 m12 l12">
-                        <input placeholder="" id="nomecategoria" name="nomecategoria" type="text" class="validate">
+                        <input placeholder="" id="nomecategoria" name="nomecategoria" type="text" class="validate" value="{{ s_categoria.nome }}">
                         <label for="nomecategoria">Nome:</label>  
                     </div>
                 </div>
@@ -26,4 +27,5 @@
         </div>
     </div>
 </form>
+{% endfor %}
 {% endblock body %}
