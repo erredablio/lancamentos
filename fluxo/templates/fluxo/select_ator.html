@@ -1,0 +1,48 @@
+{% extends 'body.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row" style="gap: 10px; padding: 10px;">
+        <div class="input-field outlined col s12 m12 l12">
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th style="width:5%">Id</th>
+                        <th style="width:10%; text-align:center">Status</th>
+                        <th style="width:30%">Nome</th>
+                        <th style="width:20%; text-align:center">Categoria</th>
+                        <th style="width:10%; text-align:center">Credor</th>
+                        <th style="width:10%; text-align:center">Responsável Conta</th>
+                        <th style="width:10%; text-align:center">Responsável Pagamento</th>
+                        <th colspan="2" style="width:5%; text-align:center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>{% for s_ator in atores %}
+                        <td style="width:5%">{{ s_ator.id }}</td>
+                        {% comment %} <td style="width:10%; text-align:center">{{ s_ator.status }}</td> {% endcomment %}
+                        <td style="width:10%; text-align:center"><i class="material-icons">{% if s_ator.status %}check_circle{% else %}radio_button_unchecked{% endif %}</i></td>
+                        <td style="width:30%">{{ s_ator.nome }}</td>
+                        <td style="width:20%; text-align:center">{{ s_ator.categoria }}</td>
+                        <td style="width:10%; text-align:center"><i class="material-icons">{% if s_ator.credor %}check_circle{% else %}radio_button_unchecked{% endif %}</i></td>
+                        <td style="width:10%; text-align:center"><i class="material-icons">{% if s_ator.responsavel_conta %}check_circle{% else %}radio_button_unchecked{% endif %}</i></td>
+                        <td style="width:10%; text-align:center"><i class="material-icons">{% if s_ator.responsavel_pagamento %}check_circle{% else %}radio_button_unchecked{% endif %}</i></td>
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#update_ator/{{ s_ator.id }}"</td>
+                            <i class="large material-icons">edit</i>Editar
+                        </a></td>
+                        <td><a class="waves-effect waves-light red btn modal-trigger" href="{% url 'delete_ator' s_ator.id %}">
+                            <i class="large material-icons" disabled>delete_forever</i>Editar
+                        </a></td>
+                    </tr>{% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large btn modal-trigger" href="#insert_ator">
+              <i class="large material-icons">add</i>
+            </a>
+        </div>
+        {% include 'fluxo/insert_ator.html' %}
+        {% include 'fluxo/update_ator.html' %}
+    </div>
+<div>
+{% endblock body %}

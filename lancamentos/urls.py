@@ -20,10 +20,14 @@ from fluxo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
     path('categoria/', views.select_categoria, name='select_categoria'),
     path('categoria/insert/', views.insert_categoria, name='insert_categoria'),
     path('categoria/update/<int:id>', views.update_categoria, name='update_categoria'),
     path('categoria/delete/<int:id>', views.delete_categoria, name='delete_categoria'),
+    path('ator/', views.select_ator, name='select_ator'),
     path('ator/insert/', views.insert_ator, name='insert_ator'),
-    path('lancamento/insert/', views.insert_lancamento, name='insert_lancamento'),
+    path('ator/update/<int:id>', views.update_ator, name='update_ator'),
+    path('ator/delete/<int:id>', views.delete_ator, name='delete_ator'),
+    # path('lancamento/insert/', views.insert_lancamento, name='insert_lancamento'),
 ]

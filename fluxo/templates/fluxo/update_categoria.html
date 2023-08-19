@@ -3,7 +3,7 @@
 {% for s_categoria in categorias %}
 <form action="{% url 'update_categoria' s_categoria.id %}" method="POST">
 {% csrf_token %}
-    <div id="update-{{s_categoria.id}}" class="modal">
+    <div id="update_categoria/{{ s_categoria.id }}" class="modal">
         <div class="modal-content">
             <h4>Edite a Categoria #{{ s_categoria.id }}</h4>
             <div class="container-fluid">

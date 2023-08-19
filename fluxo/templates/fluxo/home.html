@@ -1,0 +1,20 @@
+{% extends 'body.html' %}
+{% block body %}
+<div class="container">
+    <div class="row" style="padding:5px">
+        <div class="col s12 m12 l12">
+            <a class="waves-effect waves-light btn-large" href="{% url 'select_categoria' %}" style="width:100%">Categoria</a>
+        </div>
+    </div>
+    <div class="row" style="padding:5px">
+        <div class="col s12 m12 l12">
+            <a class="waves-effect waves-light btn-large" href="{% url 'select_ator' %}" style="width:100%">Ator</a>
+        </div>
+    </div>
+    <div class="row" style="padding:5px">
+        <div class="col s12 m12 l12">
+            <a class="waves-effect waves-light btn-large" style="width:100%">Lançamento</a>
+        </div>
+    </div>  
+</div>
+{% endblock body %}

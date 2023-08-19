@@ -15,7 +15,7 @@
                     <tr>{% for s_categoria in categorias %}
                         <td>{{ s_categoria.id }}</td>
                         <td>{{ s_categoria.nome }}</td>
-                        <td><a class="waves-effect waves-light btn modal-trigger" href="#update-{{s_categoria.id}}">
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#update_categoria/{{ s_categoria.id }}">
                             <i class="large material-icons">edit</i>Editar
                         </a></td>
                         <td><a class="waves-effect waves-light red btn modal-trigger" href="{% url 'delete_categoria' s_categoria.id %}">
@@ -26,7 +26,7 @@
             </table>
         </div>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large btn modal-trigger" href="#insert">
+            <a class="btn-floating btn-large btn modal-trigger" href="#insert_categoria">
               <i class="large material-icons">add</i>
             </a>
         </div>
