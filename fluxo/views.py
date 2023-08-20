@@ -3,8 +3,10 @@ from datetime import datetime
 from fluxo.models import Categoria, Ator, Lancamento
 
 def home(request):
-    pass
-    return render (request, './fluxo/home.html')
+    qtd_categorias = Categoria.objects.count()
+    qtd_credores = Ator.objects.filter(credor=True).count
+    context = {'qtd_categorias':qtd_categorias, 'qtd_credores':qtd_credores}
+    return render (request, './fluxo/home.html', context)
 
 def select_categoria(request):
     s_categoria = Categoria.objects.all()
@@ -56,18 +58,16 @@ def insert_ator(request):
         else: 
             post.credor=False        
         if 'checkboxresponsavelconta' in request.POST:
-            post.responsavel_pagamento=True
-        else:
-            post.responsavel_pagamento=False
-        if 'responsavelpagamento' in request.POST:
             post.responsavel_conta=True
         else:
             post.responsavel_conta=False
+        if 'responsavelpagamento' in request.POST:
+            post.responsavel_pagamento=True
+        else:
+            post.responsavel_pagamento=False
         post.save()
-        # return render(request, './fluxo/insert_ator.html', context)
         return redirect('select_ator')
     else:
-        # return render(request, './fluxo/insert_ator.html', context)
         return redirect('select_ator')
     
 def update_ator(request, id):
@@ -80,21 +80,18 @@ def update_ator(request, id):
             s_ator.status=True
         else:
             s_ator.status=False
-
         if 'checkboxcredor' in request.POST:
             s_ator.credor=True
         else: 
             s_ator.credor=False 
-                   
         if 'checkboxresponsavelconta' in request.POST:
-            s_ator.responsavel_pagamento=True
-        else:
-            s_ator.responsavel_pagamento=False
-
-        if 'responsavelpagamento' in request.POST:
             s_ator.responsavel_conta=True
         else:
             s_ator.responsavel_conta=False
+        if 'responsavelpagamento' in request.POST:
+            s_ator.responsavel_pagamento=True
+        else:
+            s_ator.responsavel_pagamento=False
         s_ator.save()
         return redirect('select_ator')
     return render(request, './fluxo/update_ator.html', context)

@@ -1,5 +1,6 @@
 {% extends 'body.html' %}
 {% block body %}
+{% include '../header.html' %}
 <div class="container-fluid">
     <div class="row" style="gap: 10px; padding: 10px;">
         <div class="input-field outlined col s12 m12 l12">
@@ -8,7 +9,7 @@
                     <tr>
                         <th style="width:3%">Id</th>
                         <th>Nome</th>
-                        <th colspan="2" style="width:3%">Ações</th>
+                        <th colspan="2" style="width:5%; text-align:center">Ações</th>
                     </tr>
                 </thead>
                 <tbody>

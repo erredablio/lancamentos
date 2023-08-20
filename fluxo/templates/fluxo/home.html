@@ -1,20 +1,23 @@
 {% extends 'body.html' %}
 {% block body %}
-<div class="container">
-    <div class="row" style="padding:5px">
-        <div class="col s12 m12 l12">
-            <a class="waves-effect waves-light btn-large" href="{% url 'select_categoria' %}" style="width:100%">Categoria</a>
+{% include '../header.html' %}
+<div class="container-fluid">
+    <div class='row' style='padding: 10px; gap: 10px'>
+        <div class='col s12 m4 l4'>
+            <div class='card-panel teal lighten-2'>
+                <span>Categorias: {{ qtd_categorias }}</span>
+            </div>
         </div>
-    </div>
-    <div class="row" style="padding:5px">
-        <div class="col s12 m12 l12">
-            <a class="waves-effect waves-light btn-large" href="{% url 'select_ator' %}" style="width:100%">Ator</a>
+        <div class='col s12 m4 l4'>
+            <div class='card-panel teal lighten-2'>
+                <span>Credores {{ qtd_credores }} </span>
+            </div>
         </div>
-    </div>
-    <div class="row" style="padding:5px">
-        <div class="col s12 m12 l12">
-            <a class="waves-effect waves-light btn-large" style="width:100%">Lançamento</a>
+        <div class='col s12 m4 l4'>
+            <div class='card-panel teal lighten-2'>
+                <span>Lançamentos:</span>
+            </div>
         </div>
-    </div>  
+    </div>   
 </div>
 {% endblock body %}
