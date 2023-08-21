@@ -112,6 +112,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Estrutura para definir o formato de data para o padrão Brasileiro
+# https://stackoverflow.com/questions/7737146/how-can-i-change-the-default-django-date-template-format
+
+USE_L10N = False
+
+DATE_FORMAT = 'd/m/Y'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

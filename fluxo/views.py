@@ -101,7 +101,6 @@ def delete_ator(request, id):
     s_ator.delete()
     return redirect('select_ator')
 
-
 def insert_lancamento(request):
     s_responsavel_conta = Ator.objects.filter(responsavel_conta=True)
     s_responsavel_pagamento = Ator.objects.filter(responsavel_pagamento=True)
@@ -123,3 +122,9 @@ def insert_lancamento(request):
         return render(request, './fluxo/insert_lancamento.html', context)
     else:
         return render(request, './fluxo/insert_lancamento.html', context)
+    
+def select_lancamento(request):
+    s_lancamento = Lancamento.objects.all()
+    context = {'lancamentos':s_lancamento}
+    return render (request, './fluxo/select_lancamento.html', context)
+

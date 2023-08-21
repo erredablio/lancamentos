@@ -1,0 +1,73 @@
+{% extends 'body.html' %}
+{% block body %}
+{% include '../header.html' %}
+<div class="container-fluid">
+    <div class="row" style="gap: 10px; padding: 10px;">
+        <div class="input-field outlined col s12 m12 l12">
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th style="width:3%">Id</th>
+                        <th>Dt. Venc.</th>
+                        <th>Dt. Pgto.</th>
+                        <th>Categoria</th>
+                        <th>Credor</th>
+                        <th>Resp. Pagto.</th>
+                        <th>Resp. Conta</th>
+                        <th>Descrição</th>
+                        <th>Parcelas</th>
+                        <th>Vlr. Devido</th>
+                        <th>Vlr. Pago</th>
+                        <th>Tipo</th>
+                        <th>Status</th>
+                        <th colspan="2" style="width:5%; text-align:center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>{% for s_lancamento in lancamentos %}
+                        <td>{{ s_lancamento.id }}</td>
+                        <td>{% if s_lancamento.data_vencimento != None %}
+                                {{ s_lancamento.data_vencimento }}
+                            {% endif %}</td>
+                        <td>{% if s_lancamento.data_pagamento != None %}
+                                {{ s_lancamento.data_pagamento }}
+                            {% endif %}</td>
+                        <td>{{ s_lancamento.categoria }}</td>
+                        <td>{{ s_lancamento.credor }}</th>
+                        <td>{{ s_lancamento.responsavel_pagamento }}</td>
+                        <td>{{ s_lancamento.responsavel_conta }}</td>
+                        <td>{{ s_lancamento.descricao }}</td>
+                        <td>{{ s_lancamento.parcelas }}</td>
+                        <td>{{ s_lancamento.valor_devido }}</td>
+                        <td>{{ s_lancamento.valor_pago }}</td>
+                        <td>{% if s_lancamento.tipo == 'S' %}
+                            <i class="small material-icons" style="color:red">credit_card_off</i>
+                            {% else %}<i class="small material-icons" style="color:green">add_card</i>
+                            {% endif %}</td>
+                        <td>{% if s_lancamento.status == 'A' %}
+                                <i class="small material-icons" style="color:red">error</i>                            
+                            {% elif s_lancamento.status == 'P' %}
+                                <i class="small material-icons" style="color:blue">error</i>                        
+                            {% elif s_lancamento.status == 'Q' %}
+                                <i class="small material-icons" style="color:green">check_circle</i>
+                            {% endif %}</td>
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#update_categoria/{{ s_lancamento.id }}">
+                            <i class="large material-icons">edit</i>Editar
+                        </a></td>
+                        <td><a class="waves-effect waves-light red btn modal-trigger" href="{% url 'delete_categoria' s_lancamento.id %}">
+                            <i class="large material-icons" disabled>delete_forever</i>Editar
+                        </a></td>
+                    </tr>{% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large btn modal-trigger" href="#insert_lancamento">
+              <i class="large material-icons">add</i>
+            </a>
+        </div>
+        {% comment %} {% include 'fluxo/insert_lancamento.html' %}
+        {% include 'fluxo/update_lancamento.html' %} {% endcomment %}
+    </div>
+<div>
+{% endblock body %}

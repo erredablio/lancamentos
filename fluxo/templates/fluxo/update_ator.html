@@ -10,7 +10,7 @@
                 <div class="row" style="gap: 10px; padding: 10px;">
                     <div class="input-field outlined col s12 m12 l12">
                         <select id="form-select-1" name="selectcategoria">
-                            <option value="{{ s_ator.categoria.id }}" selected>{{ s_ator.categoria.nome }}</option>
+                            <option value="{{ s_ator.categoria.id }}" selected disabled>{{ s_ator.categoria.nome }}</option>
                             {% for s_categoria in categorias %}
                             <option value="{{ s_categoria.id }}">{{ s_categoria.nome }}</option>
                             {% endfor %}
