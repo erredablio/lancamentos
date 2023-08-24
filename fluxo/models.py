@@ -1,4 +1,5 @@
 from django.db import models
+from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
@@ -37,8 +38,8 @@ class Lancamento(models.Model):
     responsavel_conta = models.ForeignKey(Ator, related_name='fk_responsavel_conta', on_delete=models.CASCADE, null=False, blank=False)
     descricao = models.TextField(max_length=150, null=True, blank=True)
     parcelas = models.IntegerField(default=0, null=False, blank=False)    
-    valor_devido = models.DecimalField(default=0, max_digits=10, decimal_places=2, null=False, blank=False)
-    valor_pago = models.DecimalField(default=0, max_digits=10, decimal_places=2, null=True, blank=True)    
+    valor_devido = MoneyField(default=0, max_digits=10, decimal_places=2, default_currency='BRL', null=False, blank=False)
+    valor_pago = MoneyField(default=0, max_digits=10, decimal_places=2, default_currency='BRL', null=True, blank=True)    
     tipo = models.CharField(default='S', max_length = 1, choices=TIPO, null=False, blank=False)
     status = models.CharField(default='A', max_length = 1, choices=STATUS, null=False, blank=False)
     

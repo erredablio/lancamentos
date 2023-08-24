@@ -128,3 +128,27 @@ def select_lancamento(request):
     context = {'lancamentos':s_lancamento}
     return render (request, './fluxo/select_lancamento.html', context)
 
+def delete_lancamento(request, id):
+    pass
+    return redirect('select_lancamento')
+
+def update_pagamento(request, id):
+    s_lancamento = get_object_or_404(Lancamento, pk=id)
+    context = {'pagamentos':s_lancamento}
+    if request.method=='POST':
+        s_lancamento.data_vencimento=request.POST['datavencimento']
+        s_lancamento.data_pagamento=request.POST['datapagamento']
+        s_lancamento.valor_devido=request.POST['valordevido']
+        s_lancamento.valor_pago=request.POST['valorpago']
+        s_lancamento.save()
+        # if s_lancamento.valor_pago >= s_lancamento.valor_devido:
+        #     s_lancamento.status='Q'
+        #     s_lancamento.save()
+        # elif s_lancamento.valor_pago > 0 and s_lancamento.valor_pago < s_lancamento.valor_devido:
+        #     s_lancamento.status='P'
+        #     s_lancamento.save()
+        # else: 
+        #     s_lancamento.status='A'
+        #     s_lancamento.save()
+        return render(request, './fluxo/update_pagamento.html', context) 
+    return render(request, './fluxo/update_pagamento.html', context) 

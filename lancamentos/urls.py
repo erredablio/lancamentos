@@ -31,4 +31,5 @@ urlpatterns = [
     path('ator/delete/<int:id>', views.delete_ator, name='delete_ator'),
     path('lancamento/', views.select_lancamento, name='select_lancamento'),
     path('lancamento/insert/', views.insert_lancamento, name='insert_lancamento'),
+    path('lancamento/pagamento/<int:id>', views.update_pagamento, name='update_pagamento'),
 ]

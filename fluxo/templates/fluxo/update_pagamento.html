@@ -1,0 +1,46 @@
+{% extends 'body.html' %}
+{% block body %}
+{% for s_lancamento in pagamentos %}
+<div class="container-fluid">
+    <form action="{% url 'update_pagamento' s_lancamento.id %}" method="POST">
+        {% csrf_token %}
+        <div class="row" style="gap: 10px; padding: 10px; display: flex; justify-content: space-between;">
+            <div class="input-field outlined col s12 m12 l2">
+                <input id="datavencimento" name="datavencimento" type="text" class="datepicker" placeholder=" ">
+                <label class="active" for="datavencimento">Data de Vencimento:</label>
+            </div>                    
+            <div class="input-field outlined col s12 m12 l2">
+                <input id="datapagamento" name="datapagamento" type="text" class="datepicker" placeholder=" ">
+                <label class="active" for="datapagamento">Data de Pagamento:</label>
+            </div>                    
+        </div>
+        <div class="row" style="gap: 10px; padding: 10px;">
+            <div class="input-field outlined col s12 m12 l2">
+                <div class="input-field outlined col s12 m12 l2">
+                    <input placeholder="R$ 0,00" id="valordevido" name="valordevido" type="text" class="validate">
+                    <label for="valordevido">Valor Devido</label>
+                </div>    
+            </div>
+            <div class="input-field outlined col s12 m12 l2">
+                <div class="input-field outlined col s12 m12 l2">
+                    <input placeholder="R$ 0,00" id="valorpago" name="valorpago" type="text" class="validate">
+                    <label for="valorpago">Valor Pago</label>
+                </div>    
+            </div>
+        </div>
+        <div class="row" style="gap: 10px; padding: 10px; display: flex; justify-content: flex-end">
+            <div class="input-field col s12 m12 l12">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+                    <i class="material-icons left">save</i>
+                </button>
+            </div>
+            <div class="input-field col s12 m12 l12">
+                <button class="btn waves-effect waves-light blue" type="submit" name="action">Pagar
+                    <i class="material-icons left">paid</i>
+                </button>
+            </div>
+        </div>
+    </form>
+<div>
+{% endfor %}
+{% endblock body %}

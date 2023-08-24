@@ -41,15 +41,21 @@
                         <td>{{ s_lancamento.valor_devido }}</td>
                         <td>{{ s_lancamento.valor_pago }}</td>
                         <td>{% if s_lancamento.tipo == 'S' %}
-                            <i class="small material-icons" style="color:red">credit_card_off</i>
-                            {% else %}<i class="small material-icons" style="color:green">add_card</i>
+                                <a class="waves-effect waves-light white btn modal-trigger" href="#update_categoria/{{ s_lancamento.id }}">
+                                <i class="small material-icons" style="color:red">trending_down</i></a>
+                            {% else %}
+                                <a class="waves-effect waves-light white btn modal-trigger" href="#update_categoria/{{ s_lancamento.id }}">
+                                <i class="small material-icons" style="color:green">trending_up</i></a>
                             {% endif %}</td>
                         <td>{% if s_lancamento.status == 'A' %}
-                                <i class="small material-icons" style="color:red">error</i>                            
+                                <a class="waves-effect waves-light red btn modal-trigger" href="#update_categoria/{{ s_lancamento.id }}">
+                                <i class="small material-icons" style="color:white">flag</i></a>                        
                             {% elif s_lancamento.status == 'P' %}
-                                <i class="small material-icons" style="color:blue">error</i>                        
+                                <a class="waves-effect waves-light blue btn modal-trigger" href="#update_categoria/{{ s_lancamento.id }}">
+                                <i class="small material-icons" style="color:white">flag</i></a>                        
                             {% elif s_lancamento.status == 'Q' %}
-                                <i class="small material-icons" style="color:green">check_circle</i>
+                                <a class="waves-effect waves-light green btn modal-trigger" href="#update_categoria/{{ s_lancamento.id }}">
+                                <i class="small material-icons" style="color:white">flag</i></a>
                             {% endif %}</td>
                         <td><a class="waves-effect waves-light btn modal-trigger" href="#update_categoria/{{ s_lancamento.id }}">
                             <i class="large material-icons">edit</i>Editar
